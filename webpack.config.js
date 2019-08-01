@@ -18,6 +18,7 @@ module.exports = {
 		alias: { // 配置别名可以加快webpack查找模块的速度
 			'@': path.resolve(__dirname, 'src'),
 			'_c': path.resolve(__dirname, 'src/components'),
+			'_v': path.resolve(__dirname, 'src/views'),
 		}
 	},
 	module: {

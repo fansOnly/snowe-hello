@@ -15,8 +15,8 @@ module.exports = merge(config, {
 		inline: true,// 设置为true，当源文件改变时会自动刷新页面
 		hot: true,// 模块热更新，取决于HotModuleReplacementPlugin
 		host: '127.0.0.1',// 设置默认监听域名，如果省略，默认为“localhost”
-		port: 8088,
-		open: true,
+		port: 8081,
+		// open: true,
 		// proxy: {
 		// 	'/api': {
 		// 		target: 'https://applet.pro.ibw.cc',
@@ -28,7 +28,7 @@ module.exports = merge(config, {
 	module: {
 		rules: [
 			{
-				test: /\.(sa|sc|c)ss$/,
+				test: /\.(le|sc|c)ss$/,
 				use: [
 					'vue-style-loader',
 					{
@@ -37,7 +37,7 @@ module.exports = merge(config, {
 							importLoaders: 2
 						}
 					},
-					'sass-loader',
+					'less-loader',
 					'postcss-loader',
 				]
 			},

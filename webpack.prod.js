@@ -16,7 +16,7 @@ module.exports = merge(config, {
 	module: {
 		rules: [
 			{
-				test: /\.(sa|sc|c)ss$/,
+				test: /\.(le|sc|c)ss$/,
 				use: [
 					{
 						loader: MiniCssExtractPlugin.loader,
@@ -27,7 +27,7 @@ module.exports = merge(config, {
 							importLoaders: 2
 						}
 					},
-					'sass-loader',
+					'less-loader',
 					'postcss-loader',
 				]
 			},
