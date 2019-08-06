@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="header">
 		<p class="s1">this is page Header</p>
 	</div>
 </template>
@@ -10,8 +10,8 @@ export default {
 }
 </script>
 <style scoped>
-.s1 {
-	color: red;
-	font-size: 40px;
+.header {
+	height: 60px;
+	background: rgb(233, 151, 151);
 }
 </style>

@@ -19,6 +19,7 @@ module.exports = {
 			'@': path.resolve(__dirname, 'src'),
 			'_c': path.resolve(__dirname, 'src/components'),
 			'_v': path.resolve(__dirname, 'src/views'),
+			'_u': path.resolve(__dirname, 'src/utils'),
 		}
 	},
 	module: {

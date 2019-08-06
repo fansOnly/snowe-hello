@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="footer">
 		<p class="s1">this is page Footer</p>
 	</div>
 </template>
@@ -10,8 +10,8 @@ export default {
 }
 </script>
 <style scoped>
-.s1 {
-	color: red;
-	font-size: 40px;
+.footer {
+	height: 60px;
+	background: rgb(226, 124, 124);
 }
 </style>

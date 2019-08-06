@@ -1,17 +1,18 @@
 <template>
-	<div>
+	<div class="side">
 		<p class="s1">this is page Menu</p>
 	</div>
 </template>
 
 <script>
 export default {
-	name: 'Menu',
+	name: 'Sidebar',
 }
 </script>
 <style scoped>
-.s1 {
-	color: red;
-	font-size: 40px;
+.side {
+	width: 100%;
+	height: 100%;
+	background: #f7f7f7;
 }
 </style>

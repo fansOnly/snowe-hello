@@ -1,10 +1,12 @@
-import Vue from 'vue'
+import Vue from 'vue';
 
-import App from './App.vue'
+import router from './router/index';
 
-import router from './router/index'
+import './assets/reset.css';
 
-Vue.config.productionTip = false
+import App from './App.vue';
+
+Vue.config.productionTip = false;
 
 new Vue({
 	router,
