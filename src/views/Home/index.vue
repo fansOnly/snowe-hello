@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<img alt="Vue logo" src="../../assets/logo.png">
+		<img alt="Vue logo" src="../../assets/images/logo.png">
 		<p class="s1">this is page Home.....</p>
 		<router-link to="/foo">Foo</router-link>
 		<router-link :to="{name: 'Bar'}">Bar</router-link>

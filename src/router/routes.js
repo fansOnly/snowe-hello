@@ -5,10 +5,6 @@ const Bar2 = () => import('_v/Bar/Bar2/index.vue')
 const Biz = () => import('_v/Biz/index.vue')
 
 const User = () => import('_v/User/index.vue')
-// const Footer = () => import('_v/User/Footer/index.vue')
-// const Header = () => import('_v/User/Header/index.vue')
-// const Main = () => import('_v/User/Main/index.vue')
-// const Sidebar = () => import('_v/User/Sidebar/index.vue')
 
 const NotFound = () => import('_c/notFound/404.vue')
 

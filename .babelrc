@@ -5,11 +5,15 @@
 			"targets": {
 				"browsers": ["> 1%", "last 2 versions", "not ie <= 8"]
 			},
-			"useBuiltIns": "usage"
+			"useBuiltIns": "usage",
+			"corejs": 3,
 		}]
 	],
 	"plugins": [
-		"@babel/plugin-transform-runtime",
+		// 与useBuiltIns不能同时使用
+		// ["@babel/plugin-transform-runtime", {
+		// 	"corejs": 3
+		// }],
 		"@vue/babel-plugin-transform-vue-jsx",
 		"@babel/plugin-syntax-dynamic-import",
 		["import", {

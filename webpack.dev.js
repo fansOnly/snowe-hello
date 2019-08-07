@@ -50,6 +50,11 @@ module.exports = merge(config, {
 		new webpack.DefinePlugin({
 			'process.env.NODE_ENV': JSON.stringify('development')
 		}),
+		// 启用 HMR'
 		new webpack.HotModuleReplacementPlugin(),
+		// 在控制台中输出可读的模块名,开发环境使用
+        new webpack.NamedModulesPlugin(),
+		// 不做改动hash保持不变
+		new webpack.HashedModuleIdsPlugin(),
 	]
 })

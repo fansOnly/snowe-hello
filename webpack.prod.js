@@ -4,11 +4,17 @@ const config = require('./webpack.config.js')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 const CSSSplitWebpackPlugin = require('css-split-webpack-plugin').default
+const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin")
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const ProgressBarPlugin = require('progress-bar-webpack-plugin')
+const DashboardPlugin = require("webpack-dashboard/plugin")
+const chalk = require('chalk')
+const TerserPlugin = require('terser-webpack-plugin')
 
 module.exports = merge(config, {
 	mode: 'production',
 	output: {
-		filename: "'js/[name].[contenthash:8].js'",
+		filename: 'js/[name].[contenthash:8].js',
 		chunkFilename: 'js/[name].[chunkhash:8].chunk.js',
 		pathinfo: false,
 	},
@@ -35,20 +41,25 @@ module.exports = merge(config, {
 	},
 	optimization: {
 		minimizer: [
-			new OptimizeCSSAssetsPlugin({})
+			new OptimizeCSSAssetsPlugin(),
+			new TerserPlugin(),
 		],
 		runtimeChunk: 'single',
 		splitChunks: {
+			chunks: "all",
 			cacheGroups: {
-				vendor: {
+				vendors: {
+					name: 'chunk-vendors',
 					test: /[\\/]node_modules[\\/]/,
-					name: 'vendors',
-					chunks: 'all'
+					priority: -10,
+					chunks: 'initial',
 				},
-				default: {  // 为非node-modules库中分割出的代码设置默认存放名称
+				common: {
+					name: `chunk-common`,
+					minChunks: 2,
 					priority: -20,
-					reuseExistingChunk: true, // 避免被重复打包分割
-					name: 'common'
+					chunks: 'initial',
+					reuseExistingChunk: true
 				}
 			}
 		},
@@ -57,14 +68,25 @@ module.exports = merge(config, {
 		new webpack.DefinePlugin({
 			'process.env.NODE_ENV': JSON.stringify('production')
 		}),
-		new webpack.HashedModuleIdsPlugin(),
 		new MiniCssExtractPlugin({
-			filename: 'css/[name].css',
+			filename: 'css/[name].[hash].css',
 			chunkFilename: 'css/[id].[chunkhash:8].css',
 		}),
 		new CSSSplitWebpackPlugin({
 			size: 4000,
-			filename: '[name]-[part].[ext]'
-		})
+			filename: 'css/[name]-[part].[ext]'
+		}),
+		// 注意一定要在HtmlWebpackPlugin之后引用
+		// inline 的name 和你 runtimeChunk 的 name保持一致
+		new ScriptExtHtmlWebpackPlugin({
+			//`runtime` must same as runtimeChunk name. default is `runtime`
+			inline: /runtime~main\..*\.js$/
+		}),
+		// new BundleAnalyzerPlugin(),
+		new ProgressBarPlugin({
+			format: '  build [:bar] ' + chalk.green.bold(':percent') + ' (:elapsed seconds)',
+			clear: true
+		}),
+		new DashboardPlugin(),
 	]
 })
