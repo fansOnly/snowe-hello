@@ -23,6 +23,9 @@ export default {
 			count: 0
 		}
 	},
+	created () {
+		// console.log('process.env.NODE_ENV', process.env.NODE_ENV);
+	},
 	methods: {
 		increament: function(e) {
 			console.log('event', e)

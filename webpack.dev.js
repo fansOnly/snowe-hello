@@ -37,8 +37,8 @@ module.exports = merge(config, {
 							importLoaders: 2
 						}
 					},
-					'less-loader',
 					'postcss-loader',
+					'less-loader',
 				]
 			},
 		]

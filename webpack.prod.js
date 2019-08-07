@@ -1,6 +1,7 @@
 const merge = require('webpack-merge')
 const webpack = require('webpack')
 const config = require('./webpack.config.js')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 const CSSSplitWebpackPlugin = require('css-split-webpack-plugin').default
@@ -10,6 +11,7 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 const DashboardPlugin = require("webpack-dashboard/plugin")
 const chalk = require('chalk')
 const TerserPlugin = require('terser-webpack-plugin')
+const ManifestPlugin = require('webpack-manifest-plugin')
 
 module.exports = merge(config, {
 	mode: 'production',
@@ -25,7 +27,7 @@ module.exports = merge(config, {
 				test: /\.(le|sc|c)ss$/,
 				use: [
 					{
-						loader: MiniCssExtractPlugin.loader,
+						loader: MiniCssExtractPlugin.loader
 					},
 					{
 						loader: 'css-loader',
@@ -33,8 +35,8 @@ module.exports = merge(config, {
 							importLoaders: 2
 						}
 					},
-					'less-loader',
 					'postcss-loader',
+					'less-loader',
 				]
 			},
 		]
@@ -68,13 +70,15 @@ module.exports = merge(config, {
 		new webpack.DefinePlugin({
 			'process.env.NODE_ENV': JSON.stringify('production')
 		}),
-		new MiniCssExtractPlugin({
-			filename: 'css/[name].[hash].css',
-			chunkFilename: 'css/[id].[chunkhash:8].css',
-		}),
+		new CleanWebpackPlugin(),
+		new ManifestPlugin(),
 		new CSSSplitWebpackPlugin({
 			size: 4000,
 			filename: 'css/[name]-[part].[ext]'
+		}),
+		new MiniCssExtractPlugin({
+			filename: 'css/[name].[hash].css',
+			chunkFilename: 'css/[id].[chunkhash:8].css',
 		}),
 		// 注意一定要在HtmlWebpackPlugin之后引用
 		// inline 的name 和你 runtimeChunk 的 name保持一致
