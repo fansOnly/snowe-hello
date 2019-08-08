@@ -2210,8 +2210,8 @@ css-select@^2.0.0:
 
 css-split-webpack-plugin@^0.2.6:
   version "0.2.6"
-  resolved "https://registry.npm.taobao.org/css-split-webpack-plugin/download/css-split-webpack-plugin-0.2.6.tgz#ead2dacb06399184e078683a02ebc9967052d97f"
-  integrity sha1-6tLaywY5kYTgeGg6AuvJlnBS2X8=
+  resolved "https://registry.yarnpkg.com/css-split-webpack-plugin/-/css-split-webpack-plugin-0.2.6.tgz#ead2dacb06399184e078683a02ebc9967052d97f"
+  integrity sha512-N5x0VdcU0zIh1aYnjjH/2Ijz06yQCeIAl3lvTup2bMlQriSTzq1REUMYDiT9m35RN0emS6m9zdFLvCx6ODhabQ==
   dependencies:
     loader-utils "^1.1.0"
     postcss "^6.0.14"
